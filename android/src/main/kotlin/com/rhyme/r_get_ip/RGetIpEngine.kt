@@ -17,7 +17,7 @@ import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLSocketFactory
 
 class RGetIpEngine(private val context: Context) : ContextWrapper(context) {
-    val serverUrl = "https://api.ipify.org?format=json"
+    val serverUrl = "https://api64.ipify.org?format=json"
 
     fun getInternalIP(): String? {
         try {

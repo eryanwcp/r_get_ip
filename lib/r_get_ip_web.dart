@@ -35,7 +35,7 @@ class RGetIpWeb {
       case 'getExternalIP':
         Completer<String> completer = Completer();
         var xhr = html.HttpRequest()
-          ..open('GET', 'https://api.ipify.org/?format=json', async: true)
+          ..open('GET', 'https://api64.ipify.org/?format=json', async: true)
           ..withCredentials = false;
         xhr.onLoad.first.then((value) {
           var blob = xhr.response ?? html.Blob([]);

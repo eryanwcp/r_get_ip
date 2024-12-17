@@ -6,7 +6,7 @@ Future<String> getExternalIp() async {
   Completer<String> result = Completer();
   HttpClient client = HttpClient();
   client
-      .getUrl(Uri.parse("https://api.ipify.org/?format=json"))
+      .getUrl(Uri.parse("https://api64.ipify.org/?format=json"))
       .then((HttpClientRequest request) {
     // Optionally set up headers...
     // Optionally write to the request object...

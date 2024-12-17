@@ -144,7 +144,7 @@ public class SwiftRGetIpPlugin: NSObject, FlutterPlugin {
          }
      }
 
-     internal static var serviceURL = "https://api.ipify.org?format=json"    // var only for unit testabilty
+     internal static var serviceURL = "https://api64.ipify.org?format=json"    // var only for unit testabilty
 
      public static func getPublicIPAddress(completion: @escaping CompletionHandler) {
          let url = URL(string: Ipify.serviceURL)!
