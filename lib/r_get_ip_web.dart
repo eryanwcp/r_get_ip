@@ -5,7 +5,7 @@ import 'dart:convert';
 // of your plugin as a separate package, instead of inlining it in the same
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -34,18 +34,11 @@ class RGetIpWeb {
         return "127.0.0.1";
       case 'getExternalIP':
         Completer<String> completer = Completer();
-        var xhr = html.HttpRequest()
-          ..open('GET', 'https://api64.ipify.org/?format=json', async: true)
-          ..withCredentials = false;
-        xhr.onLoad.first.then((value) {
-          var blob = xhr.response ?? html.Blob([]);
-          if (blob is String) {
-            completer.complete(blob);
-          } else {
-            completer.complete('0.0.0.0');
-          }
-        });
-        xhr.send();
+        var url = Uri.https('api64.ipify.org', '/?format=json');
+        var response = await http.get(url);
+
+        var r = response.body ?? '0.0.0.0';
+        completer.complete(r);
         String result = await completer.future;
         final map = json.decode(result);
         return map['ip'];
