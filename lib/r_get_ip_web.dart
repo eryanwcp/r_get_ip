@@ -34,14 +34,16 @@ class RGetIpWeb {
         return "127.0.0.1";
       case 'getExternalIP':
         Completer<String> completer = Completer();
+        // var url = Uri.https('api64.ipify.org', '');
+        // var response = await http.(url,body: {'format':'json'});
+
         var url = Uri.https('api64.ipify.org', '');
-        var response = await http.post(url,body: {'format':'json'});
+        var response = await http.get(url);
 
         var r = response.body ?? '0.0.0.0';
         completer.complete(r);
         String result = await completer.future;
-        final map = json.decode(result);
-        return map['ip'];
+        return result;
       default:
         throw PlatformException(
           code: 'Unimplemented',
