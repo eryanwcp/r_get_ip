@@ -198,39 +198,41 @@ class IpAddress extends IpRepository {
   /// A function that retrieves the IP address from 'https://ip{version}.seeip.org' using HTTP GET request.
   /// It takes an optional parameter 'version' of type 'Ip' which defaults to 'Ip.v4'.
   /// Returns a Future<String> containing the retrieved IP address or an error message.
-  Future<String> getIp({Ip version = Ip.v4}) async {
+  Future<String?> getIp({Ip version = Ip.v4}) async {
     try {
       return jsonDecode(jsonEncode((await http.get(Uri.parse(
               'https://ip${version == Ip.v4 ? 'v4' : 'v6'}.seeip.org')))
           .body));
     } on Exception catch (e) {
-      return e.toString();
+      print(e.toString());
+      return null;
     }
   }
 
   /// A function that retrieves the IP address from 'https://api.seeip.org' using HTTP GET request.
   /// Returns a Future<String> containing the retrieved IP address or an error message.
-  Future<String> getUniversalIp() async {
+  Future<String?> getUniversalIp() async {
     try {
       return jsonDecode(jsonEncode((await http.get(Uri.parse(
           'https://api.seeip.org')))
           .body));
     } on Exception catch (e) {
-      return e.toString();
+      print(e.toString());
+      return null;
     }
   }
 
   @override
 
   /// Retrieves the IPv4 address using the getIp function and returns it as a string.
-  Future<String> getIpv4() {
+  Future<String?> getIpv4() {
     return getIp(version: Ip.v4);
   }
 
   @override
 
   /// A function that returns an IPv6 address by calling the getIp function with the version parameter set to Ip.v6.
-  Future<String> getIpv6() {
+  Future<String?> getIpv6() {
     return getIp(version: Ip.v6);
   }
 

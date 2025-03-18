@@ -3,9 +3,10 @@ import 'package:r_get_ip/public_ip_address.dart';
 abstract class IpRepository {
   Future<String> getSeeIp(String key);
   Future<Map<String, dynamic>> getAllData({Ip version = Ip.v4});
-  Future<String> getIp({Ip version = Ip.v4});
-  Future<String> getIpv4();
-  Future<String> getIpv6();
+  Future<String?> getUniversalIp();
+  Future<String?> getIp({Ip version = Ip.v4});
+  Future<String?> getIpv4();
+  Future<String?> getIpv6();
   Future<String> getContinentCode();
   Future<String> getCountry();
   Future<String> getCountryCode();
